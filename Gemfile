@@ -4,4 +4,4 @@ source 'https://rubygems.org'
 gemspec
 
 gem 'rspec', '~> 3.2.0'
-gem 'gmail', '~> 0.5.0'
+gem 'gmail', '~> 0.5.0' # https://github.com/gmailgem/gmail
