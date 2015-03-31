@@ -14,7 +14,7 @@ module EmailUtilities
 
             number_of_emails_to_retrieves = 5
             symbols.each do |symbol|
-                email = gmail.inbox.emails(symbol,:from => "shahrad.rezaei@shah-network.com").take(number_of_emails_to_retrieves)
+                email = gmail.inbox.emails(symbol).take(number_of_emails_to_retrieves)
                 emails_obtain[symbol] = convert_email(email)
             end
             emails_obtain
