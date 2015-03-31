@@ -4,7 +4,7 @@ module EmailConnection
     class << self
 
         def establish_connection
-           return  Gmail.connect('mah.sync24@gmail.com', '***')
+            Gmail.connect('mah.sync24@gmail.com', '***')
         end
     end # class self
 end
