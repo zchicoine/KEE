@@ -1,6 +1,9 @@
 # KEE
 
-TODO: Write a gem description
+Key Element Extraction script
+    Read email from Email Server (Gmail)
+    categories emails to ship position, personal and not ship position
+    Create array of hashes to pass to Email Recognition script
 
 ## Installation
 
@@ -18,7 +21,8 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+    KEE.unread_emails
+    return Array of emails, each email is a Hash with the following format {subject:,body:,from:,reply_to:,date:}. [] otherwise
 
 ## Contributing
 
