@@ -8,11 +8,12 @@ module EmailUtilities
         def obtain_emails(symbols)
            # connect to gmail
             emails_obtain = {}
-           p gmail = EmailConnection.establish_connection
+            gmail = EmailConnection.establish_connection
             return emails_obtain unless gmail.logged_in?
             number_of_emails_to_retrieves = 5
             symbols.each do |symbol|
-                emails_obtain[symbol] = convert_email(gmail.inbox.emails(symbol).take(number_of_emails_to_retrieves))
+                email = gmail.inbox.emails(symbol,:from => "shahrad.rezaei@shah-network.com").take(number_of_emails_to_retrieves)
+                emails_obtain[symbol] = convert_email(email)
             end
             return emails_obtain
         end
@@ -29,13 +30,25 @@ module EmailUtilities
                 email_hash[:subject] = email_message.subject
                 email_hash[:from] = email_message.from
                 email_hash[:to] = email_message.to
-                email_hash[:body] = email_message.body.decoded
+                email_hash[:body] = clean_up_email_body(email_message)
                 email_hash[:date] = email_message.date
+                email_hash[:category] = :unknown
                 emails_array.push(email_hash)
 
             end
 
             return emails_array
+        end
+
+        def clean_up_email_body(email_message)
+
+            parts = email_message.parts
+
+            if parts.length > 0
+                return ''
+            else
+                return email_message.body.to_s
+            end
         end
 
     end # class self

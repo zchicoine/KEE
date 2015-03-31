@@ -15,4 +15,5 @@ module ObtainEmails
         result = EmailUtilities.obtain_emails(%i(read))
         result[:read]
     end
+
 end
