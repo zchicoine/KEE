@@ -1,9 +1,9 @@
 # KEE
 
 Key Element Extraction script
-    Read email from Email Server (Gmail)
-    categories emails to ship position, personal and not ship position
-    Create array of hashes to pass to Email Recognition script
+- Read email from Email Server (Gmail)
+- categories emails to ship position, personal and not ship position
+- Create array of hashes to pass to Email Recognition script
 
 ## Installation
 
