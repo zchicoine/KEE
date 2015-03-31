@@ -28,6 +28,8 @@ module EmailUtilities
             emails_array = []
 
             emails.each do |email|
+                # mark email as read
+                email.read!
                 email_message = email.message
                 email_hash = {}
                 email_hash[:subject] = email_message.subject
