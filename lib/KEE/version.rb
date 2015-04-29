@@ -1,3 +1,4 @@
 module KEE
-  VERSION = '0.1'
+    # '||' This took care of the warning and is a lot simpler than checking if each constant is defined
+    VERSION ||= '0.1'
 end

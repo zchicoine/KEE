@@ -1,13 +1,13 @@
-require 'KEE/version'
-require_relative 'email_server/obtain_emails'
-require_relative 'filter_emails/filter_emails'
-require_relative 'email_format/email_format'
+require_relative 'KEE/version'
+require_relative 'KEE/email_server/obtain_emails'
+require_relative 'KEE/filter_emails/filter_emails'
+require_relative 'KEE/email_format/email_format'
 # email categories {:unknown,:ship_position, :not_ship_position, :personal}
 module KEE
-    extend ObtainEmails
-    extend FilterEmails
+    extend KEE::EmailServer::ObtainEmails
+    extend KEE::FilterEmails
     extend EmailFormat
-    include EmailCategories
+    include KEE::EmailCategories
 
     class << self
 
