@@ -4,7 +4,7 @@ module KEE
         module EmailUtilities
             class << self
 
-                # :param [Array] of symbols
+                # :param [Array] of symbols, Gmail connection which is an option param
                 # :description this method access email server and retrieves 5 emails
                 # :return [Hash] {symbol: []} :Example {unread: [Array] of {subject: , from: , to: body:} of unread emails], read: [[Array] of [Hash] of read emails]}
                 def obtain_emails(symbols)
