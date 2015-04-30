@@ -21,10 +21,14 @@ Or install it yourself as:
 
 ## Usage
 
-    KEE.unread_emails
-    return Array of emails, each email is a Hash with the following format {subject:,body:,from:,reply_to:,date:}. [] otherwise
+    kee = KEE.new
+    
+    #:return Array of emails, each email is a Hash with the following format {subject:,body:,from:,reply_to:,date:}. [] otherwise
+    kee.unread_emails
+    
+    # :description establish a connection to a gmail account
+    # see https://github.com/nfo/gmail_xoauth for more info
+    # :param [option Hash] {auth_type: :basic , :email_address,:password}
+    KEE.config_connection(config)
 
-## Contributing
-
-TODO: Write Contribution instructions here
 
