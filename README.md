@@ -23,7 +23,8 @@ Or install it yourself as:
 
     kee = KEE.new
     
-    #:return Array of emails, each email is a Hash with the following format {subject:,body:,from:,reply_to:,date:}. [] otherwise
+    #:return Array of emails, each email is a Hash with the following format 
+    # {subject:,body:,from:,reply_to:,date:}. [] otherwise
     kee.unread_emails
     
     # :description establish a connection to a gmail account
