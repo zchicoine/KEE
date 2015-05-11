@@ -25,7 +25,7 @@ module KEE
                 #####============================================= Private self methods ==============================================####
 
                 private
-                # :return [Array] of {subject: , from: , to: body:}
+                # :return [Array] of {subject: , email_address: , to: body:}
                 def convert_email(emails)
                     emails_array = []
 
@@ -35,11 +35,11 @@ module KEE
                         email_message = email.message
                         email_hash = {}
                         email_hash[:subject] = email_message.subject
-                        email_hash[:from] = email_message.from
+                        email_hash[:email_address] = email_message.from # the user email address
                         email_hash[:to] = email_message.to
                         email_hash[:body] = clean_up_email_body(email_message)
                         email_hash[:date] = email_message.date
-                        email_hash[:category] = :unknown
+                        email_hash[:category] = :unknown # assign the email to unknown category
                         emails_array.push(email_hash)
 
                     end

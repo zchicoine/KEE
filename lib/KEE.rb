@@ -11,24 +11,26 @@ module KEE
             Class.new do
                 include Singleton
                 include KEE::EmailServer::ObtainEmails
+                include KEE::CategorizeEmails
                 include KEE::FilterEmails
                 include KEE::EmailFormat
-                include KEE::EmailCategories
 
-                # :return [Array] of emails, each email is a [Hash] with the following format {subject:,body:,from:,reply_to:,date:}. [] otherwise
+
+                # :return [Array] of emails, each email is a [Hash] with the following format {subject:,body:,email_address:,reply_to:,date:}. [] otherwise
                 def unread_emails
-                    # get all unread emails from the sever
-                    emails = obtain_unread_emails
+                    # 1) get all unread emails from the sever
+                    emails = obtain_unread_emails # from KEE::EmailServer::ObtainEmails
                     return [] if emails.nil?
 
-                    # filter each email
+                    # 2) categorize emails
                     emails.each do |email|
-                        email[:category] =  filter_email(email)
+                        email[:category] =  CategorizeEmails::Operation.category(email)
                     end
-                    # delete emails that not Ship position
-                    emails.delete_if {|email| email[:category] != KEE::EmailCategories::SHIP_POSITION_EMAIL}
 
-                    # reformat emails and return
+                    # 3) filter emails
+                     FilterEmails.new(email)
+
+                    # 4) reformat emails and return
                     return format_emails(emails)
                 end
             end.instance # return an instance
