@@ -1,5 +1,5 @@
 require_relative 'KEE/version'
-require_relative 'KEE/email_server/obtain_emails'
+require_relative 'KEE/email_server/email_operation'
 require_relative 'KEE/filter_emails/filter_emails'
 require_relative 'KEE/email_format/email_format'
 # email categories {:unknown,:ship_position, :not_ship_position, :personal}
@@ -10,7 +10,7 @@ module KEE
         def new
             Class.new do
                 include Singleton
-                include KEE::EmailServer::ObtainEmails
+                include KEE::EmailServer::EmailOperations
                 include KEE::CategorizeEmails
                 include KEE::FilterEmails
                 include KEE::EmailFormat
@@ -19,19 +19,20 @@ module KEE
                 # :return [Array] of emails, each email is a [Hash] with the following format {subject:,body:,email_address:,reply_to:,date:}. [] otherwise
                 def unread_emails
                     # 1) get all unread emails from the sever
-                    emails = obtain_unread_emails # from KEE::EmailServer::ObtainEmails
+                    emails = obtain_unread_emails # from KEE::EmailServer::EmailOperations
                     return [] if emails.nil?
 
                     # 2) categorize emails
                     emails.each do |email|
                         email[:category] =  CategorizeEmails::Operation.category(email)
+                        label_email(email) # from KEE::EmailServer::EmailOperations
                     end
 
                     # 3) filter emails
-                     FilterEmails.new(email)
+                     FilterEmails.new(emails)
 
                     # 4) reformat emails and return
-                    return format_emails(emails)
+                    return format_emails(emails) # from KEE::EmailFormat
                 end
             end.instance # return an instance
         end

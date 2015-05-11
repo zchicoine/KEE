@@ -1,3 +1,7 @@
+###
+# Categorize emails to personal, ship ,order or not ship
+# Also label emails to Personal, Ship, Orders or Not ship
+###
 require_relative 'constants'
 require_relative 'keys_identifiers/obtain_key_identifiers'
 module KEE
