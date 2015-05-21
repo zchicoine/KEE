@@ -11,12 +11,22 @@ module KEE
                 result = EmailUtilities.instance.obtain_emails(%i(unread),number)
                 result[:unread]
             end
+
             # :description access the email and obtaining all unread emails.
             # :param [Integer] number of email should be download
             # :return [Array] of [Hash] unread emails
             def obtain_unread_emails_by_address(address,number)
                 result = EmailUtilities.instance.obtain_emails_by_address(address,%i(unread),number)
                 result[:unread]
+            end
+
+            # :description access the email and obtaining all label emails.
+            # :param [String] email address of the sender
+            # :param [Integer] number of email should be read
+            # :param [Integer] categories. please see KEE::CategorizeEmails::Constants
+            # :return [Hash] :Example {unread: [Array] of {subject: , from: , to: body:} of unread emails], read: [[Array] of [Hash] of read emails]}
+            def obtain_label_emails_by_category(address,number,category)
+                 EmailUtilities.instance.obtain_label_emails(address,number,category)
             end
 
             # :description access the email and obtaining all read emails.

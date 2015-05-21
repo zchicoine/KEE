@@ -23,6 +23,7 @@ module KEE
                 end
                 emails_obtain
             end
+
             # :description this method access email server and retrieves param[number] of emails by email address
             # :param [String] email address of the sender
             # :param [Array] of symbols, Gmail connection which is an option param
@@ -45,6 +46,20 @@ module KEE
                 #email = @gmail.inbox.find(from: email[:email_address],subject:email[:subject],on:email[:date])
                 email[:email_object].label!("#{email[:email_address]}:#{email[:category].to_s}") #label will be automatically created now if doesn't exist
             end
+
+            # :description this method access email server and retrieves param[number] of emails by label
+            # :param [String] email address of the sender
+            # :param [Integer] number of email should be read
+            # :param [Integer] categories. please see KEE::CategorizeEmails::Constants
+            # :return [Hash] {label: []} :Example {unread: [Array] of {subject: , from: , to: body:} of unread emails], read: [[Array] of [Hash] of read emails]}
+            def obtain_label_emails(address,number,category)
+                emails_obtain = {}
+                return emails_obtain unless @gmail.logged_in?
+
+                email = @gmail.mailbox("#{address}:#{category.to_s}").emails(:read).take(number)
+                emails_obtain[:label] = convert_email(email)
+            end
+
             #####============================================= Private self methods ==============================================####
             private
             # :return [Array] of {subject: , email_address: , to:, body:, email_object:}

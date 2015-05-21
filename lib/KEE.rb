@@ -51,6 +51,14 @@ module KEE
                     end
                 end
 
+                # :param [String] email address of the sender
+                # :param [Integer] number of email should be download 5 by default
+                # :return [Array] of emails, each email is a [Hash] with the following format {subject:,body:,email_address:,reply_to:,date:}. [] otherwise
+                def obtain_ship_emails(address,number = 5)
+                    emails = obtain_label_emails_by_category(address,number,CategorizeEmails::Constants::SHIP_POSITION_EMAIL)
+                    return format_emails(emails) # from KEE::EmailFormat
+                end
+
             end.instance # return an instance
 
 
