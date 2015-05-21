@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = KEE::VERSION
   spec.authors       = ['The Ship Network']
   spec.email         = ['hassoun@outlook.com']
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.summary       = %q{}
+  spec.description   = %q{Key Element Extraction script.}
+  spec.homepage      = 'http://theshipnetwork.herokuapp.com/'
   spec.license       = ''
 
   spec.files         = `git ls-files -z`.split("\x0")

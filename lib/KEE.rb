@@ -15,11 +15,11 @@ module KEE
                 include KEE::FilterEmails
                 include KEE::EmailFormat
 
-
+                # :description  download 5 unread emails, categorize them, label them, filter them, and then return emails have ship info.
                 # :return [Array] of emails, each email is a [Hash] with the following format {subject:,body:,email_address:,reply_to:,date:}. [] otherwise
                 def unread_emails
                     # 1) get all unread emails from the sever
-                    emails = obtain_unread_emails # from KEE::EmailServer::EmailOperations
+                    emails = obtain_unread_emails(5) # from KEE::EmailServer::EmailOperations
                     return [] if emails.nil?
 
                     # 2) categorize emails
@@ -34,7 +34,26 @@ module KEE
                     # 4) reformat emails and return
                     return format_emails(emails) # from KEE::EmailFormat
                 end
+
+                # :description  download number of unread emails, categorize emails and label them.
+                # :param[Integer] number of emails to  categorize
+                # :param[String option] email address of the sender
+                # :return [Array] of emails, each email is a [Hash] with the following format {subject:,body:,email_address:,reply_to:,date:}. [] otherwise
+                def categorize_emails(number,address = '')
+                    # 1) get all unread emails from the sever
+                    emails = obtain_unread_emails_by_address(address,number) # from KEE::EmailServer::EmailOperations
+                    return [] if emails.nil?
+
+                    # 2) categorize emails
+                    emails.each do |email|
+                        email[:category] =  CategorizeEmails::Operation.category(email)
+                        label_email(email) # from KEE::EmailServer::EmailOperations
+                    end
+                end
+
             end.instance # return an instance
+
+
         end
 
         # :description establish a connection to a gmail account

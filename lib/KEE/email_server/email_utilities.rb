@@ -9,16 +9,32 @@ module KEE
             end
 
             # :param [Array] of symbols, Gmail connection which is an option param
-            # :description this method access email server and retrieves 5 emails
+            # :param [Integer] number of email should be read
+            # :description this method access email server and retrieves param[number] emails
             # :return [Hash] {symbol: []} :Example {unread: [Array] of {subject: , from: , to: body:} of unread emails], read: [[Array] of [Hash] of read emails]}
-            def obtain_emails(symbols)
-                # connect to gmail
+            def obtain_emails(symbols,number)
                 emails_obtain = {}
                 return emails_obtain unless @gmail.logged_in?
 
-                number_of_emails_to_retrieves = 5
+                number_of_emails_to_retrieves = number
                 symbols.each do |symbol|
                     email = @gmail.inbox.emails(symbol).take(number_of_emails_to_retrieves)
+                    emails_obtain[symbol] = convert_email(email)
+                end
+                emails_obtain
+            end
+            # :description this method access email server and retrieves param[number] of emails by email address
+            # :param [String] email address of the sender
+            # :param [Array] of symbols, Gmail connection which is an option param
+            # :param [Integer] number of email should be read
+            # :return [Hash] {symbol: []} :Example {unread: [Array] of {subject: , from: , to: body:} of unread emails], read: [[Array] of [Hash] of read emails]}
+            def obtain_emails_by_address(address,symbols,number)
+                emails_obtain = {}
+                return emails_obtain unless @gmail.logged_in?
+
+                number_of_emails_to_retrieves = number
+                symbols.each do |symbol|
+                    email = @gmail.inbox.emails(symbol,:from => address).take(number_of_emails_to_retrieves)
                     emails_obtain[symbol] = convert_email(email)
                 end
                 emails_obtain

@@ -11,6 +11,12 @@ RSpec.describe KEE do
              @kee.unread_emails
         end
     end
+    describe 'categorize all unread ships emails' do
+        it 'should categorize all emails from shahrad.rezaei@shah-network.com' do
+            address = 'shahrad.rezaei@shah-network.com'
+            @kee.categorize_emails(10)
+        end
+    end
     describe 'configure email and password' do
         it 'should update the KEE/email_server/email_config.yml file' do
             cred= {email_address:'mah.sync24@gmail.com', password:'***'}
