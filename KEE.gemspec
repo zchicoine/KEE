@@ -4,8 +4,8 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'KEE/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'KEE'
-  spec.version       = KEE::VERSION
+  spec.name          = 'kee'
+  spec.version       = Kee::VERSION
   spec.authors       = ['The Ship Network']
   spec.email         = ['hassoun@outlook.com']
   spec.summary       = %q{}
@@ -20,4 +20,5 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.6"
   spec.add_development_dependency "rake"
+  spec.add_runtime_dependency 'gmail', '~> 0.5.0' # https://github.com/gmailgem/gmail
 end
