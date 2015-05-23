@@ -2,7 +2,7 @@
 # TODO explain the class responsibility
 ###
 require 'singleton'
-module KEE
+module Kee
     module CategorizeEmails
         module KeysIdentifiers
             class ObtainKeyIdentifiers

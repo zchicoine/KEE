@@ -4,7 +4,7 @@
 ###
 require_relative 'constants'
 require_relative 'keys_identifiers/obtain_key_identifiers'
-module KEE
+module Kee
     module CategorizeEmails
        module Operation
             include CategorizeEmails::Constants

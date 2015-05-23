@@ -1,5 +1,5 @@
 require 'gmail'
-module KEE
+module Kee
     module EmailServer
         module EmailConnection
 

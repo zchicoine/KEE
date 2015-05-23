@@ -1,5 +1,5 @@
 require_relative 'email_connection'
-module KEE
+module Kee
     module EmailServer
         class EmailUtilities
             include Singleton
@@ -50,7 +50,7 @@ module KEE
             # :description this method access email server and retrieves param[number] of emails by label
             # :param [String] email address of the sender
             # :param [Integer] number of email should be read
-            # :param [Integer] categories. please see KEE::CategorizeEmails::Constants
+            # :param [Integer] categories. please see Kee::CategorizeEmails::Constants
             # :return [Hash] {label: []} :Example {unread: [Array] of {subject: , from: , to: body:} of unread emails], read: [[Array] of [Hash] of read emails]}
             def obtain_label_emails(address,number,category)
                 emails_obtain = {}

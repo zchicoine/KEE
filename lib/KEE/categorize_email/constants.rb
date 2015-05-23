@@ -1,5 +1,5 @@
 # email categories {:unknown,:ship_position, :not_ship_position, :personal}
-module KEE
+module Kee
     module CategorizeEmails
         module Constants
             UNKNOWN_EMAIL = :unknown # First time emails are received are categorize to unknown

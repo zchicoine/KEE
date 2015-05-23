@@ -1,6 +1,6 @@
 require_relative '../categorize_email/categorize_operation'
 
-module KEE
+module Kee
     module FilterEmails
         include CategorizeEmails
         class << self

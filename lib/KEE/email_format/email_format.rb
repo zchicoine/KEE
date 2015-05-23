@@ -1,6 +1,6 @@
 # reformat email to be pass to Email Recognition script
 
-module KEE
+module Kee
     module EmailFormat
 
         # :param [Array] of [Hash] {subject:,body:,to:,email_address:,category:,date:}

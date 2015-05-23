@@ -1,6 +1,6 @@
 # Read email from Email Server
 require_relative 'email_utilities'
-module KEE
+module Kee
     module EmailServer
         module EmailOperations
 
@@ -23,7 +23,7 @@ module KEE
             # :description access the email and obtaining all label emails.
             # :param [String] email address of the sender
             # :param [Integer] number of email should be read
-            # :param [Integer] categories. please see KEE::CategorizeEmails::Constants
+            # :param [Integer] categories. please see Kee::CategorizeEmails::Constants
             # :return [Hash] :Example {unread: [Array] of {subject: , from: , to: body:} of unread emails], read: [[Array] of [Hash] of read emails]}
             def obtain_label_emails_by_category(address,number,category)
                  EmailUtilities.instance.obtain_label_emails(address,number,category)
