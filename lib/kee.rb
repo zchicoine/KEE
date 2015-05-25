@@ -42,7 +42,7 @@ module Kee
                 def categorize_emails(number,address = '')
                     # 1) get all unread emails from the sever
                     emails = obtain_unread_emails_by_address(address,number) # from kee::EmailServer::EmailOperations
-
+                    0 if emails.nil?
                     # 2) categorize emails
                     emails.each do |email|
                         email[:category] =  CategorizeEmails::Operation.category(email)
