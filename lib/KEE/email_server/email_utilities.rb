@@ -42,9 +42,10 @@ module Kee
             end
 
             # :param [Hash] {email_address:,subject:,category:,date,etc}
+            # :raise an exception
             def label_an_email(email)
                 #email = @gmail.inbox.find(from: email[:email_address],subject:email[:subject],on:email[:date])
-                email[:email_object].label!("#{email[:email_address]}:#{email[:category].to_s}") #label will be automatically created now if doesn't exist
+                email[:email_object].label!("#{email[:email_address]}:#{email[:category].to_s}") #label will be automatically created new if doesn't exist
             end
 
             # :description this method access email server and retrieves param[number] of emails by label
@@ -58,6 +59,20 @@ module Kee
 
                 email = @gmail.mailbox("#{address}:#{category.to_s}").emails(:read).take(number)
                 emails_obtain[:label] = convert_email(email)
+            end
+            # :description this method access email server and retrieves number of emails by label
+            # :param [String] email address of the sender
+            # :param [Integer] categories. please see Kee::CategorizeEmails::Constants
+            # :return [int]
+            def obtain_emails_status(address,category)
+                emails_obtain = {}
+                return emails_obtain unless @gmail.logged_in?
+                begin
+                    @gmail.mailbox("#{address}:#{category.to_s}").emails(:read).count
+                rescue Net::IMAP::NoResponseError => e
+                    0
+                end
+
             end
 
             #####============================================= Private self methods ==============================================####

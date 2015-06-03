@@ -64,6 +64,24 @@ module Kee
                     []
                 end
 
+                # :description get the number of categorized emails
+                # :param [String] email address of the sender
+                # :param [Integer] number of email should be download 5 by default
+                # :return [Hash] {num_ship:,num_order:,num_personal:,num_not_ship:}.
+                def obtain_emails_status(address)
+                    begin
+                        emails_status = {}
+                        emails_status[:num_ship] = obtain_emails_status_by_category(address,CategorizeEmails::Constants::SHIP_POSITION_EMAIL)
+                        emails_status[:num_order] = obtain_emails_status_by_category(address,CategorizeEmails::Constants::ORDERS_EMAIL)
+                        emails_status[:num_personal] = obtain_emails_status_by_category(address,CategorizeEmails::Constants::PERSONAL_EMAIL)
+                        emails_status[:num_not_ship] = obtain_emails_status_by_category(address,CategorizeEmails::Constants::NOT_SHIP_POSITION_EMAIL)
+                        return emails_status
+                    rescue Exception => e
+                        p "Kee Errors: #{e}"
+                    end
+                    []
+                end
+
             end.instance # return an instance
 
 

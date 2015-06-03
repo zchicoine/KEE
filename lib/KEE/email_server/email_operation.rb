@@ -28,6 +28,13 @@ module Kee
             def obtain_label_emails_by_category(address,number,category)
                  EmailUtilities.instance.obtain_label_emails(address,number,category)
             end
+            # :description access the email and get the emails number
+            # :param [String] email address of the sender
+            # :param [Integer] categories. please see Kee::CategorizeEmails::Constants
+            # :return [Int]
+            def obtain_emails_status_by_category(address,category)
+                EmailUtilities.instance.obtain_emails_status(address,category)
+            end
 
             # :description access the email and obtaining all read emails.
             # :param [Integer] number of email should be download

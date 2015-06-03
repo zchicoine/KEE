@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    kee (0.1.3)
+    kee (0.1.3.2)
       gmail (~> 0.5.0)
 
 GEM
