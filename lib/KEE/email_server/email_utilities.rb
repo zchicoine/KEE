@@ -44,10 +44,16 @@ module Kee
             # :param [Hash] {email_address:,subject:,category:,date,etc}
             # :raise an exception
             def label_an_email(email)
-                #email = @gmail.inbox.find(from: email[:email_address],subject:email[:subject],on:email[:date])
                 email[:email_object].label!("#{email[:email_address]}:#{email[:category].to_s}") #label will be automatically created new if doesn't exist
             end
+            # :param [Hash] {email_address:,subject:,category:,date,etc}
+            # :raise an exception
+            def add_star(email)
+                #email[:email_object].remove_label!("#{email[:email_address]}:#{email[:category].to_s}") #label will be automatically created new if doesn't exist
 
+                ## because remove_label doesn't work, for now we add star to an email
+                email[:email_object].star!
+            end
             # :description this method access email server and retrieves param[number] of emails by label
             # :param [String] email address of the sender
             # :param [Integer] number of email should be read
@@ -57,7 +63,7 @@ module Kee
                 emails_obtain = {}
                 return emails_obtain unless @gmail.logged_in?
 
-                email = @gmail.mailbox("#{address}:#{category.to_s}").emails(:read).take(number)
+                email = @gmail.mailbox("#{address}:#{category.to_s}").emails(:unstarred).take(number)
                 emails_obtain[:label] = convert_email(email)
             end
             # :description this method access email server and retrieves number of emails by label

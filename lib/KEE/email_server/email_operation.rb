@@ -49,6 +49,11 @@ module Kee
                 EmailUtilities.instance.label_an_email(email)
             end
 
+            # :param [Hash] {email_address:,subject:,category:,date,etc}
+            def add_star(email)
+                EmailUtilities.instance.add_star(email)
+            end
+
 
         end
     end # EmailServer

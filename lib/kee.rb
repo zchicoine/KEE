@@ -57,7 +57,10 @@ module Kee
                 def obtain_ship_emails(address,number = 5)
                     begin
                         emails = obtain_label_emails_by_category(address,number,CategorizeEmails::Constants::SHIP_POSITION_EMAIL)
-                        return format_emails(emails) # from kee::EmailFormat
+                        emails.each do |email|
+                            add_star(email) # from kee::EmailServer::EmailOperations
+                        end
+                       return format_emails(emails) # from kee::EmailFormat
                     rescue Exception => e
                         p "Kee Errors: #{e}"
                     end
