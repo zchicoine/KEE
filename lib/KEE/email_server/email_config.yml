@@ -2,7 +2,7 @@
 gmail:
   auth_basic:
     email_address: mah.sync24@gmail.com
-    password: "***"
+    password: "jaw35Maw"
   auth_xoauth2:
     email_address: mah.sync24@gmail.com
     token: "***"

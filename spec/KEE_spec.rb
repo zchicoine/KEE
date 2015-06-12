@@ -7,13 +7,13 @@ RSpec.describe Kee do
     end
 
     describe 'obtain all unread ships emails' do
-        it 'should get all emails from the emails provided in kee/email_server/email_connection.rb' do
-             @kee.unread_emails
-        end
         # it 'should get all emails from the emails provided in kee/email_server/email_connection.rb' do
-        #     address = 'shahrad.rezaei@shah-network.com'
-        #      @kee.obtain_ship_emails(address)
+        #      @kee.unread_emails
         # end
+        it 'should get all emails from the emails provided in kee/email_server/email_connection.rb' do
+            address = 'shahrad.rezaei@shah-network.com'
+             @kee.obtain_ship_emails(address)
+        end
     end
     describe 'categorize all unread ships emails' do
         it 'should categorize all emails from shahrad.rezaei@shah-network.com' do
