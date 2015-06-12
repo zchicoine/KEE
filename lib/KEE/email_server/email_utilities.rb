@@ -58,7 +58,7 @@ module Kee
                 #email[:email_object].remove_label!("#{email[:email_address]}:#{email[:category].to_s}") #label will be automatically created new if doesn't exist
 
                 ## because remove_label doesn't work, for now we remove star from an email
-                @gmail.mailbox().emails(:starred).take(number).unstar!
+                @gmail.mailbox(:all).emails(:starred) {|email| email.unstar!}
             end
             # :description this method access email server and retrieves param[number] of emails by label
             # :param [String] email address of the sender
