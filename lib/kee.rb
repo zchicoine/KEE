@@ -67,6 +67,7 @@ module Kee
                     []
                 end
 
+
                 # :description get the number of categorized emails
                 # :param [String] email address of the sender
                 # :param [Integer] number of email should be download 5 by default

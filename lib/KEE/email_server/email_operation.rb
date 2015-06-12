@@ -53,6 +53,10 @@ module Kee
             def add_star(email)
                 EmailUtilities.instance.add_star(email)
             end
+            # :param [Hash] {email_address:,subject:,category:,date,etc}
+            def remove_stars
+                EmailUtilities.instance.remove_stars
+            end
 
 
         end
