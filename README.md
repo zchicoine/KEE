@@ -2,7 +2,7 @@
 
 Key Element Extraction script
 - Read email from Email Server (Gmail)
-- categories emails to ship position, personal and not ship position
+- categorizes emails to ship position, personal or not ship position
 - Create array of hashes to pass to Email Recognition script
 
 ## Installation
@@ -27,4 +27,3 @@ Or install it yourself as:
 ## Contributing
 
 TODO: Write Contribution instructions here
-
